@@ -1,0 +1,80 @@
+@use './base/colors';
+@use './base/types';
+@use './base/mixins';
+
+@use './layout/footer';
+@use './layout/nav';
+@use './components/button';
+
+@use './pages/index';
+@use './pages/gallery';
+@use './pages/reservation';
+
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500&family=Montserrat&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+
+  font-family: types.$font-default;
+  background-color: colors.$primaryLight;
+ margin: 0;
+  padding: 0;
+
+  @include mixins.tablet {
+    padding: 0 types.$spacer;
+  }
+
+  @include mixins.large {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+h1, h2 {
+
+  font-family: types.$font-special;}
+a {
+  color: colors.$primary;
+  text-decoration: none;
+}
+
+img{
+  max-width: 100%;
+  height: auto;
+}
+
+.center {text-align: center}
+.noDot {
+  list-style-type: none;
+}
+
+.hero {
+  background-color: colors.$primary;
+  margin: 0;
+  padding: types.$spacer;
+  text-align: center;
+
+  @include mixins.tablet {
+    padding: types.$spacer;
+  }
+}
+
+.content {
+  background-color: colors.$light;
+  margin: 0;
+  padding: types.$spacer;
+
+  @include mixins.tablet {
+    padding: types.$spacer;
+
+  }
+}
+
+.flex{
+  @include mixins.tablet {
+    display: flex;
+  }
+}

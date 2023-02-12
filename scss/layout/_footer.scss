@@ -1,0 +1,31 @@
+@use '../base/colors';
+@use '../base/types';
+@use '../base/mixins';
+
+
+.footer {
+
+  color: colors.$light;
+  margin: 0;
+  padding: 0;
+  &__top{
+    background-color: colors.$dark;
+    padding: types.$spacer ;
+
+
+  }
+  &__bottom{
+    text-align: center;
+    padding: types.$spacer 0;
+    margin: 0;
+    background-color: lighten(colors.$dark, 5%);
+
+  }
+
+  &__link{
+
+    color: colors.$light;
+
+  }
+
+}

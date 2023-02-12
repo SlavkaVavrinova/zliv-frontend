@@ -1,0 +1,24 @@
+@use '../base/colors';
+@use '../base/types';
+@use '../base/mixins';
+
+.important{
+  border-top: 2px colors.$primary solid;
+  border-bottom: 2px colors.$primary solid;
+  margin: types.$spacer 0;
+  &__items {
+  list-style-type: none;
+}
+}
+
+.img {
+  margin-left: auto ;
+  margin-right: auto ;
+}
+.hero{
+  @include mixins.tablet {
+    display: flex;
+
+  }
+}
+

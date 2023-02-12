@@ -1,0 +1,41 @@
+@use '../base/colors';
+@use '../base/types';
+@use '../base/mixins';
+
+
+.navigation{
+  background-color: colors.$primary;
+  color: colors.$light;
+  margin: 0;
+  padding: types.$spacer;
+  display: flex;
+  justify-content: space-between;
+
+  @include mixins.tablet {
+    padding: types.$spacer;
+
+  }
+
+  &__item a{
+    color: colors.$light;
+  }
+
+  &-open{
+    list-style-type: none;
+  }
+
+  &__large{
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+
+
+.logo {
+  &:hover {
+    color: colors.$primary;
+    background-color: colors.$complementary;
+
+  }
+}

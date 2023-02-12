@@ -1,0 +1,50 @@
+@use '../base/colors';
+@use '../base/types';
+@use '../base/mixins';
+
+
+.btn {
+  text-transform: uppercase;
+  background-color: colors.$complementary;
+  border: none;
+  color: colors.$primary;
+  font-weight: 600;
+
+  padding: types.$spacer/2 types.$spacer;
+
+
+  &:hover {
+    background-color: lighten(colors.$complementary, 20%);
+    color: darken(colors.$primary,20%);
+  }
+
+  &:active {
+    background-color: #6aa49a;
+  }
+
+
+}
+/*
+
+.button--secondary {
+  background-color: transparent;
+  color: colors.$secondary;
+  border: 1px solid colors.$secondary;
+
+  &:hover {
+    background: linear-gradient(45deg, colors.$primaryVariant, colors.$primary);
+  }
+}
+
+.section__buttons {
+  display: flex;
+  justify-content: space-between;
+  &--one {
+    justify-content: flex-end;
+  }
+}
+
+.button--right {
+  text-align: end;
+}
+*/

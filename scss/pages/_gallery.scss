@@ -1,0 +1,30 @@
+@use '../base/colors';
+@use '../base/types';
+@use '../base/mixins';
+
+.gallery__img {
+padding: types.$spacer 0;
+  position: relative;
+}
+.test{
+  position: relative;
+}
+
+
+.test:before {
+  content: "";
+  position: absolute;
+  top: -(types.$spacer/2);
+  left: 0;
+  width: 100%;
+  margin-bottom: types.$spacer;
+  border-top: 1px solid colors.$primary;
+
+}
+
+
+.map{
+border:none;
+  margin: types.$spacer/2 0;
+}
+
