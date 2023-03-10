@@ -128,7 +128,7 @@
 
 .map {
   border: none;
-  margin: 12px 0;
+  margin: 24px 0;
 }
 
 .required {
@@ -150,6 +150,38 @@
   border: 2px solid #c69b29;
   border-top: 2px solid #11473e;
   animation: spin 2s linear infinite;
+}
+
+.background {
+  max-width: 300px;
+  border: 1px solid black;
+  margin: 0 auto;
+  padding: 0.5em 0;
+  text-align: center;
+}
+
+.background1 {
+  background-color: #6aa49a;
+}
+
+.background2 {
+  background-color: #c69b29;
+}
+
+.background3 {
+  background-color: indianred;
+}
+
+.background4 {
+  background-color: indianred;
+}
+
+.background5 {
+  background-color: indianred;
+}
+
+.backgroundnull {
+  background-color: indianred;
 }
 
 @keyframes spin {
