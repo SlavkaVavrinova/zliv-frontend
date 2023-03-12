@@ -9,16 +9,17 @@ const ReservationForm = ({ terms, loading }) => {
             name: '',
             email: '',
             phone: '',
-            date: 'Vyber ',
+            id: '',
             info: '',
         },
         onSubmit: async (values) => {
             const url = 'http://localhost/zliv/www/api/request';
+
             const data = {
+                id: values.date,
                 name: values.name,
                 email: values.email,
                 phone: values.phone,
-                date: values.date,
                 info: values.message,
             };
 
@@ -44,7 +45,7 @@ const ReservationForm = ({ terms, loading }) => {
 
     return (
         <Formik
-            initialValues={{ name: '', email: '', phone: '', date: '' , info:''}}
+            initialValues={{ id: '' , name: '', email: '', phone: '',  info:''}}
             validate={values => {
                 const errors = {};
                 if (!values.email) {
@@ -132,13 +133,13 @@ const ReservationForm = ({ terms, loading }) => {
                         <label className="form__label" htmlFor="date">
                             Termín rezervace
                         </label>
-                        <Field name="date" as="select"
+                        <Field name="id" as="select"
                                className="form__select"
 
-                               id="date"
+                               id="id"
                                onChange={handleChange}
                                onBlur={handleBlur}
-                               value={values.date}
+                               value={values.id}
                         >
                             <option value="">Vyber
                             </option>
@@ -149,7 +150,7 @@ const ReservationForm = ({ terms, loading }) => {
                                     {terms.map((term) => {
                                         if (term.status === 1) {
                                             return (
-                                                <option key={term.id} value={term.term}>
+                                                <option key={term.id} value={term.id}>
                                                     {term.term}
                                                 </option>
                                             );

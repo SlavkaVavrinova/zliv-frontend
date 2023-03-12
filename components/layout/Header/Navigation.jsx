@@ -1,152 +1,91 @@
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import Link from 'next/link'
 import Image from 'next/image'
 
 
 import logo from "./img/logo.svg";
+const Menu = () => {
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [activeLink, setActiveLink] = useState('/');
 
-const Navigation = () => {
-  const [isMenuOpened, setIsMenuOpened] = useState(false);
-
-  const openMenu = () => {
-    setIsMenuOpened(!isMenuOpened);
-  };
-
-  const closeMenu = () => {
-    setIsMenuOpened(!isMenuOpened);
-  };
-
-  const mobileMenuRef = useRef(null);
-
-  const handleClickOutside = (event) => {
-    if (
-        mobileMenuRef.current &&
-        !mobileMenuRef.current.contains(event.target)
-    ) {
-      setIsMenuOpened(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener('click', handleClickOutside, true);
-    return () => {
-      document.removeEventListener('click', handleClickOutside, true);
+    const handleMobileMenuClick = () => {
+        setIsMobileMenuOpen(!isMobileMenuOpen);
     };
-  });
 
-  const activeMenuItem = ({ isActive }) =>
-      isActive ? 'navigationLarge__link activeItem' : 'navigationLarge__link';
+    const handleLinkClick = (link) => {
+        setActiveLink(link);
+        setIsMobileMenuOpen(false);
+    };
 
-  return (
-        <div className="navigation">
-          <Link href="/">
-            <Image
-                className="logo"
-                src={logo}
-                alt="Logo Chata Růženka"
-                width={50}
-                height={50}
-            />
-          </Link>
 
-          <span
-              className={
-                isMenuOpened
-                    ? 'navigation__hamburger open'
-                    : 'navigation__hamburger'
-              }
-              onClick={openMenu}
-          >
-          <span className="navigation__rows"></span>
-        </span>
-          {isMenuOpened ? (
-              <ul ref={mobileMenuRef} className="noDot navigation-open">
-                <div className="hamburger__close" onClick={closeMenu}></div>
-                <li className="navigation__item">
-                  <Link href="/"
-       //                 className={activeMenuItem}
-                        onClick={openMenu}>
-                    DOMŮ
-                  </Link>
-                </li>
-                <li className="navigation__item">
-                  <Link
-                      href="/fotogalerie"
-     //                 className={activeMenuItem}
-                      onClick={openMenu}
-                  >
-                    FOTOGALERIE
-                  </Link>
-                </li>
-                <li className="navigation__item">
-                  <Link
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 700) {
+                setIsMobileMenuOpen(true);
+            } else {
+                setIsMobileMenuOpen(false);
+            }
+        };
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
-                      href="/rezervace"
-                   //   className={activeMenuItem}
-                      onClick={openMenu}
-                  >
-                    REZERVACE
-                  </Link>
+    return (
+        <nav className="navigation">
+            <Link href="/" >
+                <Image
+                    className="navigation__logo"
+                    src={logo}
+                    alt="Logo Chata Růženka"
+                    width={75}
+                    height={75}
+                />
+            </Link>
+            <div className="navigation__hamburger" onClick={handleMobileMenuClick}>
+                <span className={isMobileMenuOpen ? "bar open" : "bar"}></span>
+                <span className={isMobileMenuOpen ? "bar open" : "bar"}></span>
+                <span className={isMobileMenuOpen ? "bar open" : "bar"}></span>
+            </div>
+            {isMobileMenuOpen && (
+                <ul className="navigation__menu">
+                    <li>
+                        <Link href="/" className={activeLink === '/' ? 'active' : ''} onClick={() => handleLinkClick('/')}>DOMŮ</Link>
+                    </li>
+                    <li>
+                        <Link href="/fotogalerie" className={activeLink === '/fotogalerie' ? 'active' : ''} onClick={() => handleLinkClick('/fotogalerie')}>FOTOGALERIE</Link>
+                    </li>
+                    <li>
+                        <Link href="/rezervace" className={activeLink === '/rezervace' ? 'active' : ''} onClick={() => handleLinkClick('/rezervace')}>REZERVACE</Link>
+                    </li>
+                    <li>
+                        <Link href="/cenik" className={activeLink === '/cenik' ? 'active' : ''} onClick={() => handleLinkClick('/cenik')}>CENÍK</Link>
+                    </li>
+                    <li>
+                        <Link href="/kontakt" className={activeLink === '/kontakt' ? 'active' : ''} onClick={() => handleLinkClick('/kontakt')}>KONTAKT</Link>
+                    </li>
+                </ul>
+            )}
+            <ul className="navigation__web">
+                <li>
+                    <Link href="/" className={activeLink === '/' ? 'active' : ''} >DOMŮ</Link>
                 </li>
-                <li className="navigation__item">
-                  <Link
-                      href="/cenik"
-                     // className={activeMenuItem}
-                      onClick={openMenu}
-                  >
-                    CENÍK
-                  </Link>
+                <li>
+                    <Link href="/fotogalerie" className={activeLink === '/fotogalerie' ? 'active' : ''} >FOTOGALERIE</Link>
                 </li>
-                <li className="navigation__item">
-                  <Link
-                      href="/kontakt"
-               //       className={activeMenuItem}
-                      onClick={openMenu}
-                  >
-                    KONTAKT
-                  </Link>
+                <li>
+                    <Link href="/rezervace" className={activeLink === '/rezervace' ? 'active' : ''} >REZERVACE</Link>
                 </li>
-              </ul>
-          ) : null}
-          <ul className="navigation__large noDot">
-            <li className="navigation__item">
-              <Link href="/"
-         //           className={activeMenuItem}
-                  >
-                DOMŮ
-              </Link>
-            </li>
-            <li className="navigation__item">
-              <Link href="/fotogalerie"
-         //           className={activeMenuItem}
-              >
-                FOTOGALERIE
-              </Link>
-            </li>
-            <li className="navigation__item">
-              <Link href="/rezervace"
-        //            className={activeMenuItem}
-              >
-                REZERVACE
-              </Link>
-            </li>
-            <li className="navigation__item">
-              <Link href="/cenik"
-         //           className={activeMenuItem}
-              >
-                CENÍK
-              </Link>
-            </li>
-            <li className="navigation__item">
-              <Link href="/kontakt"
-        //            className={activeMenuItem}
-              >
-                KONTAKT
-              </Link>
-            </li>
-          </ul>
-        </div>
-   );
+                <li>
+                    <Link href="/cenik" className={activeLink === '/cenik' ? 'active' : ''} >CENÍK</Link>
+                </li>
+                <li>
+                    <Link href="/kontakt" className={activeLink === '/kontakt' ? 'active' : ''} >KONTAKT</Link>
+                </li>
+            </ul>
+        </nav>
+    );
 };
 
-export default Navigation;
+export default Menu;

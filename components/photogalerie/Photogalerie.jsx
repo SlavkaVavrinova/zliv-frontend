@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import Link from 'next/link';
+import {Carousel} from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 import first from "./img/0.jpg";
 import first1 from "./img/1.jpg";
@@ -26,6 +27,7 @@ const Photogalerie = () => {
             <section className="content">
                 <h1>Fotogalerie</h1>
 
+                <div className="gallery__mobile">
                     <Image className="gallery__img" src={first} alt="Chata Růženka ubytování" width={400}/>
                     <Image className="gallery__img" src={first1} alt="Chata Růženka ubytování" width={400}/>
                     <Image className="gallery__img" src={first2} alt="Chata Růženka ubytování" width={400}/>
@@ -43,10 +45,65 @@ const Photogalerie = () => {
                     <Image className="gallery__img" src={first14} alt="Chata Růženka ubytování" width={400}/>
                     <Image className="gallery__img" src={first15} alt="Chata Růženka ubytování" width={400}/>
                     <Image className="gallery__img" src={first16} alt="Chata Růženka ubytování" width={400}/>
+                </div>
+                <Carousel className="gallery__carousel" showThumbs={false} showArrows={true}>
+                    <div>
+                        <Image className="gallery__img" src={first} alt="Chata Růženka ubytování" width={400}/>
+                    </div>
+                    <div>
+                        <Image className="gallery__img" src={first1} alt="Chata Růženka ubytování" width={400}/>
+                    </div>
+                    <div>
+                        <Image className="gallery__img" src={first2} alt="Chata Růženka ubytování" width={400}/>
+                    </div>
+                    <div>
+                        <Image className="gallery__img" src={first3} alt="Chata Růženka ubytování" width={400}/>
+                    </div>
+                    <div>
+                        <Image className="gallery__img" src={first4} alt="Chata Růženka ubytování" width={400}/>
+                    </div>
+                    <div>
+                        <Image className="gallery__img" src={first5} alt="Chata Růženka ubytování" width={400}/>
+                    </div>
+                    <div>
+                        <Image className="gallery__img" src={first6} alt="Chata Růženka ubytování" width={400}/>
+                    </div>
+                    <div>
+                        <Image className="gallery__img" src={first7} alt="Chata Růženka ubytování" width={400}/>
+                    </div>
+                    <div>
+                        <Image className="gallery__img" src={first8} alt="Chata Růženka ubytování" width={400}/>
+                    </div>
+                    <div>
+                        <Image className="gallery__img" src={first9} alt="Chata Růženka ubytování" width={400}/>
+                    </div>
+                    <div>
+                        <Image className="gallery__img" src={first10} alt="Chata Růženka ubytování" width={400}/>
+                    </div>
+                    <div>
+                        <Image className="gallery__img" src={first11} alt="Chata Růženka ubytování" width={400}/>
+                    </div>
+                    <div>
+                        <Image className="gallery__img" src={first12} alt="Chata Růženka ubytování" width={400}/>
+                    </div>
+                    <div>
+                        <Image className="gallery__img" src={first13} alt="Chata Růženka ubytování" width={400}/>
+                    </div>
+                    <div>
+                        <Image className="gallery__img" src={first14} alt="Chata Růženka ubytování" width={400}/>
+                    </div>
+                    <div>
+                        <Image className="gallery__img" src={first15} alt="Chata Růženka ubytování" width={400}/>
+                    </div>
+                    <div>
+                        <Image className="gallery__img" src={first16} alt="Chata Růženka ubytování" width={400}/>
+                    </div>
+
+                </Carousel>
 
             </section>
         </main>
-        </>);
+    </>);
 };
 
 export default Photogalerie;

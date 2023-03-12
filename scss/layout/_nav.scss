@@ -2,8 +2,10 @@
 @use '../base/types';
 @use '../base/mixins';
 
-
-.navigation{
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: colors.$primary;
   color: colors.$light;
   margin: 0;
@@ -11,31 +13,102 @@
   display: flex;
   justify-content: space-between;
 
+  &__web {
+    display: none;
+    @include mixins.tablet {
+      display: flex;
+      list-style-type: none;
+    }
+    & li {
+      margin-top: 20px;
+      @include mixins.tablet {
+        margin: types.$spacerS;
+      }
+    }
+    & a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    & a:hover {
+      text-decoration: underline;
+    }
+  }
   @include mixins.tablet {
     padding: types.$spacer;
-
   }
 
-  &__item a{
-    color: colors.$light;
+  &__logo {
+    padding: types.$spacerS;
+
+    &:hover {
+      color: colors.$primary;
+      background-color: colors.$complementary;
+
+    }
   }
 
-  &-open{
-    list-style-type: none;
-  }
-
-  &__large{
+  &__hamburger {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    @include mixins.tablet {
+      display: none;
+    }
+  }
+
+  &__menu {
+    display: block;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    @include mixins.tablet {
+      display: none;
+    }
+
+    & li {
+      margin-top: 20px;
+      @include mixins.tablet {
+        margin: types.$spacerS;
+      }
+    }
+
+    & a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    & a:hover {
+      text-decoration: underline;
+    }
   }
 }
 
+.bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  transition: all 0.3s ease-in-out;
 
-
-.logo {
-  &:hover {
-    color: colors.$primary;
-    background-color: colors.$complementary;
-
+  &.open:nth-child(2) {
+    opacity: 0;
   }
+
+  &.open:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  &.open:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+}
+
+.active {
+  background-color: colors.$complementary;
 }

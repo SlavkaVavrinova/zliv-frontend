@@ -124,7 +124,7 @@
     justify-content: center;
   }
   &__field {
-    margin-bottom: types.$spacer/2;
+    margin-bottom: types.$spacerS;
   }
 
   &__label {
@@ -183,10 +183,10 @@
 .fieldset {
   display: grid;
   grid-template-columns: 2fr 8fr;
-  gap: types.$spacer/2;
+  gap: types.$spacerS;
   border: 2px solid colors.$primary;
   border-radius: 3px;
-  margin-bottom: types.$spacer/2;
+  margin-bottom: types.$spacerS;
 
   @include mixins.special(400px) {
     grid-template-columns: 1fr 6fr 2fr;
