@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-import Photogalerie from "../components/Photogalerie/Photogalerie";
+import Photogalerie from "../components/photogalerie/Photogalerie";
 
 
 const Fotogalerie = () => {

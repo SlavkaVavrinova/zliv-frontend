@@ -3,6 +3,37 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 
 const ReservationForm = ({ terms, loading }) => {
 
+    const test = async (values) => {
+        console.log(values)
+        const url = '/api/create-reservation';
+
+        const data = {
+            id: values.id,
+            name: values.name,
+            email: values.email,
+            phone: values.phone,
+            info: values.info,
+        };
+
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.ok) {
+                console.log('Formulář úspěšně odeslán.');
+            } else {
+                console.error('Chyba při odesílání formuláře.');
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
 
     const formik = useFormik({
         initialValues: {
@@ -12,35 +43,7 @@ const ReservationForm = ({ terms, loading }) => {
             id: '',
             info: '',
         },
-        onSubmit: async (values) => {
-            const url = 'http://localhost/zliv/www/api/request';
 
-            const data = {
-                id: values.date,
-                name: values.name,
-                email: values.email,
-                phone: values.phone,
-                info: values.message,
-            };
-
-            try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    body: JSON.stringify(data),
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
-
-                if (response.ok) {
-                    console.log('Formulář úspěšně odeslán.');
-                } else {
-                    console.error('Chyba při odesílání formuláře.');
-                }
-            } catch (error) {
-                console.error(error);
-            }
-        },
     });
 
     return (
@@ -57,12 +60,7 @@ const ReservationForm = ({ terms, loading }) => {
                 }
                 return errors;
             }}
-            onSubmit={(values, { setSubmitting }) => {
-                setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    setSubmitting(false);
-                }, 400);
-            }}
+            onSubmit={test}
         >
             {({
                   values,

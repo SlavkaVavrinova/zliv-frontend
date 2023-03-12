@@ -43,7 +43,8 @@ const Reservation = () => {
                     email na adresu <Link href="mailto:chata.ruzenka@seznam.cz">chata.ruzenka@seznam.cz</Link>. Náš objekt je k dispozici k pronájmu od soboty
                     do soboty. Pro kratší pobyty než týden, v mimo sezónním období, nás neváhejte kontaktovat kvůli
                     individuálnímu jednání. Děkujeme Vám za projevený zájem.</p>
-                <ReservationForm terms={terms} loading={loading}/>
+                {terms && <ReservationForm terms={terms} loading={loading}/>}
+
 
                 {loading ? (
                     <div className="loading">Načítám data
@@ -51,7 +52,7 @@ const Reservation = () => {
                     </div>
                 ) : (
                     <>
-                        {terms.map(term => (
+                        {terms && terms.map(term => (
                             <div key={term.id} className={`background background${term.status}`}>{term.term}</div>
                         ))}
                     </>
