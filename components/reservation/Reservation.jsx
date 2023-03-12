@@ -12,7 +12,7 @@ const Reservation = () => {
     useEffect(() => {
         const nacistData = async () => {
             try {
-                const resp = await fetch("http://localhost/zlivDoctrine/www/api/");
+                const resp = await fetch(`${process.env.NEXT_PUBLIC_ADMIN_URL}/api`);
                 switch (resp.status) {
                     case 200:
                         const data = await resp.json();
